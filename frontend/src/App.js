@@ -1,13 +1,16 @@
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './Header';
 
 function App() {
   return (
-    <div>
-      <header>
-        <a href="/">Mango</a>
-      </header>
-      <main>list products</main>
-    </div>
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route exact path="/" element={<><Header /></>} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

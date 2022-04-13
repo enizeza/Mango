@@ -14,6 +14,9 @@ function App() {
           <Route exact path="/" element={<Home />} />
         </Routes>
       </main>
+      <footer>
+        <div className="footer">All rights reserved</div>
+      </footer>
     </Router>
   );
 }

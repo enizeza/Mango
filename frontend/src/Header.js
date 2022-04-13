@@ -2,49 +2,67 @@ import React from 'react';
 import './Header.css';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { Link } from 'react-router-dom';
 
 function Header() {
   return (
-    <div className="header">
+    <nav class="navbar">
       <Link to="/">
-        <img
-          className="header__logo"
-          src="https://st.mngbcn.com/images/headerNew/logos/mango.svg"
-        />
-      </Link>
-
-      <div className="header__search">
-        <input className="header__searchInput" type="text" />
-        <SearchIcon className="header__searchIcon" />
-      </div>
-
-      <div className="header__nav">
-        <Link to={'/login'}>
-          <div className="header__option">
-            <span className="header__optionLineOne">Hello</span>
-            <span className="header__optionLineTwo">Guest</span>
-          </div>
-        </Link>
-
-        <Link to="/orders">
-          <div className="header__option">
-            <span className="header__optionLineTwo">Ordini</span>
-          </div>
-        </Link>
-
-        <div className="header__option">
-          <span className="header__optionLineTwo">Preferiti</span>
+        <div class="logo">
+          <img src="/images/index.jpg" alt="logo" />
         </div>
-
-        <Link to="/checkout">
-          <div className="header__optionBasket">
-            <ShoppingCartIcon />
-            <span className="header__optionLineTwo header__basketCount"></span>
-          </div>
-        </Link>
+      </Link>
+      <div class="item search right" tabindex="0">
+        <div class="search-group">
+          <select>
+            <option value="all">All</option>
+            <option value="all">Mens</option>
+            <option value="all">Womens</option>
+            <option value="all">Winter</option>
+            <option value="all">Summer</option>
+          </select>
+          <input type="text" />
+          <i class="material-icons search-icon">
+            <SearchIcon fontSize="large"/>
+          </i>
+        </div>
       </div>
-    </div>
+      <Link to={'/login'} class="item">
+        <div class="group">
+          <i class="material-icons">
+            <AccountCircleIcon fontSize="large"/>
+          </i>
+          <div class="detail">
+            Account
+            <div class="sub">Sign In</div>
+          </div>
+        </div>
+      </Link>
+      <Link to="/orders" class="item">
+        <div class="group">
+          <i class="material-icons" >
+            <LocalShippingIcon fontSize="large"/>
+          </i>
+          <div class="detail">
+            Orders
+            <div class="sub">& Ship</div>
+          </div>
+        </div>
+      </Link>
+      <Link to="/checkout" class="item">
+        <div class="group">
+          <i class="material-icons">
+            <ShoppingCartIcon fontSize="large"/>
+          </i>
+          <div class="detail">
+            Cart
+            <div class="sub">€ 0.0</div>
+          </div>
+        </div>
+      </Link>
+    </nav>
   );
 }
 

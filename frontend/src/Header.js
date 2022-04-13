@@ -11,7 +11,7 @@ function Header() {
     <nav class="navbar">
       <Link to="/">
         <div class="logo">
-          <img src="/images/index.jpg" alt="logo" />
+          <img src="/images/index.png" alt="logo" />
         </div>
       </Link>
       <div class="item search right" tabindex="0">
@@ -25,14 +25,14 @@ function Header() {
           </select>
           <input type="text" />
           <i class="material-icons search-icon">
-            <SearchIcon fontSize="large"/>
+            <SearchIcon />
           </i>
         </div>
       </div>
       <Link to={'/login'} class="item">
         <div class="group">
           <i class="material-icons">
-            <AccountCircleIcon fontSize="large"/>
+            <AccountCircleIcon fontSize="large" />
           </i>
           <div class="detail">
             Account
@@ -42,8 +42,8 @@ function Header() {
       </Link>
       <Link to="/orders" class="item">
         <div class="group">
-          <i class="material-icons" >
-            <LocalShippingIcon fontSize="large"/>
+          <i class="material-icons">
+            <LocalShippingIcon fontSize="large" />
           </i>
           <div class="detail">
             Orders
@@ -54,7 +54,7 @@ function Header() {
       <Link to="/checkout" class="item">
         <div class="group">
           <i class="material-icons">
-            <ShoppingCartIcon fontSize="large"/>
+            <ShoppingCartIcon fontSize="large" />
           </i>
           <div class="detail">
             Cart

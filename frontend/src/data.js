@@ -1,6 +1,7 @@
 const data = {
   products: [
     {
+      _id: '1',
       name: 'Camicia floreale',
       slug: 'camicia-floreale',
       category: 'Shirt',
@@ -10,6 +11,7 @@ const data = {
       description: 'high quality product',
     },
     {
+      _id: '2',
       name: 'Pantalone slim',
       slug: 'pantalone-slim',
       category: 'Pants',
@@ -19,6 +21,7 @@ const data = {
       description: 'high quality product',
     },
     {
+      _id: '3',
       name: 'T-shirt essential',
       slug: 't-shirt-essential',
       category: 'T-shirt',
@@ -28,6 +31,7 @@ const data = {
       description: 'high quality product',
     },
     {
+      _id: '4',
       name: 'Camicia',
       slug: 'camicia-semplice',
       category: 'Shirt',

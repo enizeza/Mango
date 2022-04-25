@@ -1,6 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import seedRouter from './seedRoutes.js';
+import userRouter from './userRoutes.js';
 
 dotenv.config();
 
@@ -9,9 +11,21 @@ mongoose
   .then(() => {
     console.log('connected to db');
   })
-  .catch((err) => {console.log(err.message);});
+  .catch((err) => {
+    console.log(err.message);
+  });
 
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/api/seed', seedRouter);
+app.use('/api/users', userRouter);
+
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
+});
 
 app.get('/', (request, response) => response.status(200).send('hello world'));
 

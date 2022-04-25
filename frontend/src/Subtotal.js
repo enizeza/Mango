@@ -3,10 +3,11 @@ import './Subtotal.css';
 import CurrencyFormat from 'react-currency-format';
 import { useNavigate } from 'react-router-dom';
 import { Store } from './Store';
+import { Button } from '@mui/material';
 
 function Subtotal() {
   const history = useNavigate();
-  const { state, dispatch } = useContext(Store);
+  const { state /*dispatch*/ } = useContext(Store);
   const {
     cart: { cartItems },
   } = state;
@@ -31,7 +32,12 @@ function Subtotal() {
         thousandSeparator={true}
         prefix={'€'}
       />
-      <button onClick={(e) => history('/payment')}>Proceed to Checkout</button>
+      <Button
+        variant="contained"
+        onClick={(e) => history('/signin?redirect=/shipping')}
+      >
+        Proceed to Checkout
+      </Button>
     </div>
   );
 }

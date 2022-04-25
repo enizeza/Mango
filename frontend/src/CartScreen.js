@@ -21,25 +21,6 @@ export default function CartScreen() {
         <div>
           <h1 className="checkout__title">Shopping Cart</h1>
         </div>
-        {/*{basket.map(item => (
-            <CheckoutProduct
-              id={item.id}
-              title={item.title}
-              image={item.image}
-              price={item.price}
-              rating={item.rating}
-            />
-          ))}
-        {cartItems.map((product) => (
-          <CartScreenProduct
-            id={product.id}
-            name={product.name}
-            image={product.image}
-            price={product.price}
-            quantity={product.quantity}
-          />
-        ))}*/}
-
         {cartItems.map((product) => (
           <CartScreenProduct product={product}></CartScreenProduct>
         ))}

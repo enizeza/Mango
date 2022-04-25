@@ -9,6 +9,7 @@ const data = {
       price: 120,
       rating: 4.5,
       description: 'high quality product',
+      countInStock: 0,
     },
     {
       _id: '2',
@@ -19,6 +20,7 @@ const data = {
       price: 80,
       rating: 4,
       description: 'high quality product',
+      countInStock: 200,
     },
     {
       _id: '3',
@@ -29,6 +31,7 @@ const data = {
       price: 10,
       rating: 5,
       description: 'high quality product',
+      countInStock: 400,
     },
     {
       _id: '4',
@@ -39,6 +42,7 @@ const data = {
       price: 75,
       rating: 4,
       description: 'high quality product',
+      countInStock: 500,
     },
   ],
 };

@@ -9,20 +9,19 @@
 }
 
 .checkoutProduct__info > button {
-  background: black;
-  border: 1px solid;
+  background: #3761af;
   margin-top: 10px;
-  border-color: white;
   color: white;
   justify-content: center;
-  height: 22px;
-  width: 130px;
+  height: 30px;
+  width: 120px;
+  padding: 1rem;
 }
 
 .checkoutProduct__image {
   object-fit: contain;
-  width: 180px;
-  height: 180px;
+  width: 300px;
+  height: 200px;
 }
 
 .checkoutProduct__rating {
@@ -37,4 +36,11 @@
 .checkoutProduct__quantity {
   font-size: 17px;
   font-weight: 800;
+}
+
+.checkoutProduct__quantity_button {
+  height: 22px;
+  width: 20px;
+  color: black;
+  background: white;
 }

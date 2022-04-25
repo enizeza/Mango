@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link /*useNavigate*/ } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { Store } from './Store';
 
 function Product(props) {
-  const navigate = useNavigate();
+  /*const navigate = useNavigate();*/
   const { product } = props;
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
@@ -34,9 +34,15 @@ function Product(props) {
           <p>{product.name}</p>
         </Link>
         <p>€{product.price}</p>
-        <Button onClick={addToCart} variant="contained">
-          Add to cart
-        </Button>
+        {product.countInStock === 0 ? (
+          <Button variant="contained" disabled>
+            Out of stock
+          </Button>
+        ) : (
+          <Button onClick={addToCart} variant="contained">
+            Add to cart
+          </Button>
+        )}
       </div>
     </div>
   );

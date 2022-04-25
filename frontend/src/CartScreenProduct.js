@@ -1,4 +1,6 @@
+import { Button } from '@mui/material';
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import './CartScreenProduct.css';
 import { Store } from './Store';
 
@@ -9,11 +11,20 @@ function CartScreenProduct(props) {
     cart: { cartItems },
   } = state;
 
-  const removeFromBasket = () => {
-    // remove the item from the basket
+  const removeFromCart = (product) => {
     dispatch({
-      type: 'REMOVE_FROM_BASKET',
-      id: product._id,
+      type: 'CART_REMOVE_ITEM',
+      payload: product,
+    });
+  };
+
+  const updateCart = (product, quantity) => {
+    dispatch({
+      type: 'CART_ADD_ITEM',
+      payload: {
+        ...product,
+        quantity,
+      },
     });
   };
 
@@ -26,15 +37,33 @@ function CartScreenProduct(props) {
       />
 
       <div className="checkoutProduct__info">
-        <p className="checkoutProduct__title">{product.name}</p>
+        <p className="checkoutProduct__title">
+          <Link to={`/product/${product.slug}`}>{product.name}</Link>
+        </p>
         <p className="checkoutProduct__quantity">
-          Quantity: {product.quantity}
+          <button
+            className="checkoutProduct__quantity_button"
+            disabled={product.quantity === 1}
+            onClick={() => updateCart(product, product.quantity - 1)}
+          >
+            -
+          </button>{' '}
+          {product.quantity}{' '}
+          <button
+            className="checkoutProduct__quantity_button"
+            disabled={product.quantity === product.countInStock}
+            onClick={() => updateCart(product, product.quantity + 1)}
+          >
+            +
+          </button>
         </p>
         <p className="checkoutProduct__price">
           <small>€</small>
           <strong>{product.price}</strong>
         </p>
-        <button onClick={removeFromBasket}>Remove from Basket</button>
+        <Button variant="contained" onClick={() => removeFromCart(product)}>
+          Remove
+        </Button>
       </div>
     </div>
   );

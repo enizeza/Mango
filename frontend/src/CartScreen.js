@@ -6,7 +6,7 @@ import './CartScreen.css';
 import Subtotal from './Subtotal';
 
 export default function CartScreen() {
-  const { state, dispatch } = useContext(Store);
+  const { state } = useContext(Store);
   const {
     cart: { cartItems },
   } = state;

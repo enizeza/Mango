@@ -5,11 +5,8 @@ import './CartScreenProduct.css';
 import { Store } from './Store';
 
 function CartScreenProduct(props) {
-  const { state, dispatch } = useContext(Store);
+  const { dispatch } = useContext(Store);
   const { product } = props;
-  const {
-    cart: { cartItems },
-  } = state;
 
   const removeFromCart = (product) => {
     dispatch({

@@ -21,7 +21,9 @@ export default function CartScreen() {
           <h1 className="checkout__title">Shopping Cart</h1>
         </div>
         {cartItems.map((product) => (
-          <CartScreenProduct product={product}></CartScreenProduct>
+          <div key={product.slug}>
+            <CartScreenProduct product={product}></CartScreenProduct>
+          </div>
         ))}
       </div>
       <div className="checkout__right">

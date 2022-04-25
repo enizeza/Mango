@@ -1,5 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Header from './Header';
 import Home from './Home';
 import ProductScreen from './ProductScreen';
@@ -9,6 +11,7 @@ import SigninScreen from './SigninScreen';
 function App() {
   return (
     <Router>
+      <ToastContainer position="bottom-center" limit={1} />
       <header>
         <Header />
       </header>

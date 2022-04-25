@@ -6,10 +6,16 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { Link } from 'react-router-dom';
 import { Store } from './Store';
+import { Button } from '@mui/material';
 
 function Header() {
-  const { state } = useContext(Store);
-  const { cart } = state;
+  const { state, dispatch } = useContext(Store);
+  const { cart, userInfo } = state;
+
+  const signOut = () => {
+    dispatch({ type: 'USER_SIGNOUT' });
+    localStorage.removeItem('userInfo');
+  };
   return (
     <nav className="navbar">
       <Link to="/">
@@ -32,17 +38,34 @@ function Header() {
           </i>
         </div>
       </div>
-      <Link to={'/signin'} className="item">
-        <div className="group">
-          <i className="material-icons">
-            <AccountCircleIcon fontSize="large" />
-          </i>
-          <div className="detail">
-            Account
-            <div className="sub">Sign In</div>
+      {userInfo ? (
+        <Link to={'/profile'} className="item">
+          <div className="group">
+            <i className="material-icons">
+              <AccountCircleIcon fontSize="large" />
+            </i>
+            <div className="detail">
+              Hello, {userInfo.name}
+              <div className="sub">Profile</div>
+              <button onClick={signOut} className="sub">
+                Sign Out
+              </button>
+            </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+      ) : (
+        <Link to={'/signin'} className="item">
+          <div className="group">
+            <i className="material-icons">
+              <AccountCircleIcon fontSize="large" />
+            </i>
+            <div className="detail">
+              Account
+              <div className="sub">Sign In</div>
+            </div>
+          </div>
+        </Link>
+      )}
       <Link to="/orders" className="item">
         <div className="group">
           <i className="material-icons">

@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import { Link /*useNavigate*/ } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { Store } from './Store';
 
 function Product(props) {
-  /*const navigate = useNavigate();*/
   const { product } = props;
   const { state, dispatch } = useContext(Store);
   const { cart } = state;

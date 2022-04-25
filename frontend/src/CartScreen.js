@@ -16,7 +16,6 @@ export default function CartScreen() {
       <Helmet>
         <title>Shopping Cart</title>
       </Helmet>
-
       <div className="checkout__left">
         <div>
           <h1 className="checkout__title">Shopping Cart</h1>

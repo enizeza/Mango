@@ -32,7 +32,7 @@ function Header() {
           </i>
         </div>
       </div>
-      <Link to={'/login'} className="item">
+      <Link to={'/signin'} className="item">
         <div className="group">
           <i className="material-icons">
             <AccountCircleIcon fontSize="large" />
@@ -61,7 +61,6 @@ function Header() {
           </i>
           <div className="detail">
             Cart
-            {/*<div class="sub">€ 0.0</div>*/}
             {cart.cartItems.length > 0 && (
               <p>{cart.cartItems.reduce((a, c) => a + c.quantity, 0)}</p>
             )}

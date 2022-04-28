@@ -12,7 +12,7 @@ export default function CartScreen() {
   } = state;
 
   return (
-    <div className="checkout">
+    <div className="checkout flex-direction">
       <Helmet>
         <title>Shopping Cart</title>
       </Helmet>

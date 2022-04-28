@@ -7,8 +7,18 @@
   justify-content: center;
 }
 
+.flex-direction {
+  flex-direction: row;
+}
+
 .checkout__title {
   margin-right: 10px;
   padding: 10px;
   border-bottom: 1px solid lightgray;
+}
+
+@media screen and (max-width: 700px) {
+  .flex-direction {
+    flex-direction: column;
+  }
 }

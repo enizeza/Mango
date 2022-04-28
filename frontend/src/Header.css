@@ -119,4 +119,7 @@
   .logo .text {
     display: none;
   }
+  .logo img {
+    max-width: 100px;
+  }
 }

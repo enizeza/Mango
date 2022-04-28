@@ -11,6 +11,7 @@ function ProductScreen() {
     // Da implementare interfaccia grafica del prodotto
     <div>
       <h1>{found.name}</h1>
+      <h1>{found.price}</h1>
     </div>
   );
 }

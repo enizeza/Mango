@@ -8,11 +8,13 @@ import { Store } from './Store';
 import { toast } from 'react-toastify';
 import { getError } from './utils';
 
-export default function SigninScreen() {
+export default function SignupScreen() {
   const history = useNavigate();
   const { search } = useLocation();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confpassword, setConfPassword] = useState('');
   const { state, dispatch } = useContext(Store);
   const { userInfo } = state;
   const redirectInUrl = new URLSearchParams(search).get('redirect');
@@ -20,8 +22,13 @@ export default function SigninScreen() {
 
   const submit = async (e) => {
     e.preventDefault();
+    if (password !== confpassword) {
+      toast.error('Password no match');
+      return;
+    }
     try {
-      const { data } = await Axios.post('/api/users/signin', {
+      const { data } = await Axios.post('/api/users/signup', {
+        name,
         email,
         password,
       });
@@ -42,10 +49,12 @@ export default function SigninScreen() {
   return (
     <div className="login">
       <Helmet>
-        <title>Sign In</title>
+        <title>Sign Up</title>
       </Helmet>
       <div className="login__container">
         <form onSubmit={submit}>
+          <h5>Name</h5>
+          <input required onChange={(e) => setName(e.target.value)} />
           <h5>E-mail</h5>
           <input
             type="email"
@@ -59,18 +68,28 @@ export default function SigninScreen() {
             required
             onChange={(e) => setPassword(e.target.value)}
           />
+          <h5>Confirm Password</h5>
+          <input
+            type="password"
+            required
+            onChange={(e) => setConfPassword(e.target.value)}
+          />
 
           <Button
             type="submit"
             className="login__signInButton"
             variant="contained"
           >
-            Sign In
+            Sign Up
           </Button>
         </form>
         <p></p>
-        <Button variant="outlined" className="login__registerButton">
-          <Link to={`/signup?redirect=${redirect}`}>Create your Account</Link>
+        <Button
+          variant="outlined"
+          /*onClick={register}*/
+          className="login__registerButton"
+        >
+          <Link to={`/signin?redirect=${redirect}`}>Sign In?</Link>
         </Button>
       </div>
     </div>

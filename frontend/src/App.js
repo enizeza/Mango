@@ -7,6 +7,8 @@ import Home from './Home';
 import ProductScreen from './ProductScreen';
 import CartScreen from './CartScreen';
 import SigninScreen from './SigninScreen';
+import ShippingAddressScreen from './ShippingAddressScreen';
+import SignupScreen from './SignupScreen';
 
 function App() {
   return (
@@ -20,7 +22,9 @@ function App() {
           <Route exact path="/product/:slug" element={<ProductScreen />} />
           <Route exact path="/" element={<Home />} />
           <Route exact path="/signin" element={<SigninScreen />} />
+          <Route exact path="/signup" element={<SignupScreen />} />
           <Route exact path="/cart" element={<CartScreen />} />
+          <Route exact path="/shipping" element={<ShippingAddressScreen />} />
         </Routes>
       </main>
       <footer>

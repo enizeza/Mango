@@ -6,7 +6,6 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { Link } from 'react-router-dom';
 import { Store } from './Store';
-import { Button } from '@mui/material';
 
 function Header() {
   const { state, dispatch } = useContext(Store);
@@ -15,6 +14,7 @@ function Header() {
   const signOut = () => {
     dispatch({ type: 'USER_SIGNOUT' });
     localStorage.removeItem('userInfo');
+    localStorage.removeItem('shippingInfo');
   };
   return (
     <nav className="navbar">

@@ -9,6 +9,13 @@ import CartScreen from './CartScreen';
 import SigninScreen from './SigninScreen';
 import ShippingAddressScreen from './ShippingAddressScreen';
 import SignupScreen from './SignupScreen';
+import PaymentScreen from './PaymentScreen';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+const promise = loadStripe(
+  'pk_test_51KjpxXJ4m4B65folhh5aZ6JaNHAhzYPBLC9enUmlZeezXEmTJLkVsYMoOI0gLaElwkOoSvgNiqmLNEzcOAadhN4G00HUjNk8fB'
+);
 
 function App() {
   return (
@@ -25,6 +32,17 @@ function App() {
           <Route exact path="/signup" element={<SignupScreen />} />
           <Route exact path="/cart" element={<CartScreen />} />
           <Route exact path="/shipping" element={<ShippingAddressScreen />} />
+          <Route
+            exact
+            path="/payment"
+            element={
+              <>
+                <Elements stripe={promise}>
+                  <PaymentScreen />
+                </Elements>
+              </>
+            }
+          />
         </Routes>
       </main>
       <footer>

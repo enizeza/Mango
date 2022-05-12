@@ -1,6 +1,8 @@
 .payment {
   display: flex;
+  justify-content: center;
   background-color: white;
+  margin-bottom: 50px;
 }
 
 .payment__container > h1 {
@@ -17,6 +19,7 @@
 
 .payment__section {
   display: flex;
+  flex-wrap: wrap;
   padding: 20px;
   margin: 0 20px;
   border-bottom: 1px solid lightgray;
@@ -48,4 +51,10 @@
   margin-top: 10px;
   color: white;
   padding: 1rem;
+}
+
+@media screen and (max-width: 700px) {
+  .payment__section {
+    flex-direction: column;
+  }
 }

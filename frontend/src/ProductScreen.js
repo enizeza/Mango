@@ -27,7 +27,7 @@ function ProductScreen() {
   return (
     <div className="product-screen">
       <div className="product-image">
-        <img src={found.image} className="product-image" alt={found.name}></img>
+        <img src={found.image} alt={found.name}></img>
       </div>
       <div className="product-detail">
         <h1 className="product-title">{found.name}</h1>

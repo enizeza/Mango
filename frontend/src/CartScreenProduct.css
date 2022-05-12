@@ -44,3 +44,9 @@
   color: black;
   background: white;
 }
+
+@media screen and (max-width: 700px) {
+  .checkoutProduct__image {
+    max-width: 200px;
+  }
+}

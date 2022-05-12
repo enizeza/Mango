@@ -25,25 +25,27 @@ function App() {
         <Header />
       </header>
       <main>
-        <Routes>
-          <Route exact path="/product/:slug" element={<ProductScreen />} />
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/signin" element={<SigninScreen />} />
-          <Route exact path="/signup" element={<SignupScreen />} />
-          <Route exact path="/cart" element={<CartScreen />} />
-          <Route exact path="/shipping" element={<ShippingAddressScreen />} />
-          <Route
-            exact
-            path="/payment"
-            element={
-              <>
-                <Elements stripe={promise}>
-                  <PaymentScreen />
-                </Elements>
-              </>
-            }
-          />
-        </Routes>
+        <div class="content-wrap">
+          <Routes>
+            <Route exact path="/product/:slug" element={<ProductScreen />} />
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/signin" element={<SigninScreen />} />
+            <Route exact path="/signup" element={<SignupScreen />} />
+            <Route exact path="/cart" element={<CartScreen />} />
+            <Route exact path="/shipping" element={<ShippingAddressScreen />} />
+            <Route
+              exact
+              path="/payment"
+              element={
+                <>
+                  <Elements stripe={promise}>
+                    <PaymentScreen />
+                  </Elements>
+                </>
+              }
+            />
+          </Routes>
+        </div>
       </main>
       <footer>
         <div className="footer">All rights reserved</div>

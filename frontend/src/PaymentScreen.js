@@ -16,12 +16,6 @@ function PaymentScreen() {
     cart: { cartItems },
   } = state;
 
-  const [succeeded, setSucceeded] = useState(false);
-  const [processing, setProcessing] = useState('');
-  const [error, setError] = useState(null);
-  const [disabled, setDisabled] = useState(true);
-  const [clientSecret, setClientSecret] = useState(true);
-
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
   cart.itemsPrice = round2(
     cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)

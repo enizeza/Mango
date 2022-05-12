@@ -1,6 +1,8 @@
 html,
 body {
   margin: 0;
+  position: relative;
+  min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -17,8 +19,12 @@ code {
   padding: 1rem;
 }
 
+.content-wrap {
+  padding-bottom: 50px;
+}
+
 .footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
   height: 50px;

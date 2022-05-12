@@ -21,13 +21,15 @@ function Product(props) {
   };
   return (
     <div>
-      <Link to={`/product/${product.slug}`}>
-        <img
-          src={product.image}
-          className="card-img-top"
-          alt={product.name}
-        ></img>
-      </Link>
+      <div className="product-image">
+        <Link to={`/product/${product.slug}`}>
+          <img
+            src={product.image}
+            className="card-img-top"
+            alt={product.name}
+          ></img>
+        </Link>
+      </div>
       <div className="product-info">
         <Link to={`/product/${product.slug}`}>
           <p>{product.name}</p>

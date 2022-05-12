@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import data from './data';
 import './Home.css';
 import Product from './product';
-import FlipMove from 'react-flip-move';
 
 function Home() {
   return (
@@ -11,13 +10,13 @@ function Home() {
       <Helmet>
         <title>Mango</title>
       </Helmet>
-      <FlipMove className="products">
+      <div className="products">
         {data.products.map((product) => (
           <div key={product.slug} className="product">
             <Product product={product}></Product>
           </div>
         ))}
-      </FlipMove>
+      </div>
     </div>
   );
 }

@@ -15,7 +15,11 @@
   position: relative;
 }
 
-.product img {
+.product-image {
+  overflow: hidden;
+}
+
+.product-image img {
   width: 100%;
   max-width: 370px;
   transition: all 0.8s;

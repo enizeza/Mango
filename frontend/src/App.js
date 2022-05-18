@@ -47,9 +47,7 @@ function App() {
           </Routes>
         </div>
       </main>
-      <footer>
-        <div className="footer">All rights reserved</div>
-      </footer>
+      
     </Router>
   );
 }

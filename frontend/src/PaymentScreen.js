@@ -1,34 +1,92 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
 import { Store } from './Store';
 import './PaymentScreen.css';
 import CartScreenProduct from './CartScreenProduct';
-import { Button } from '@mui/material';
-import { CardElement } from '@stripe/react-stripe-js';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import axios from 'axios';
 
 function PaymentScreen() {
   const history = useNavigate();
-  const { state, dispatch } = useContext(Store);
+
+  const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
   const {
     cart: { cartItems },
   } = state;
 
+<<<<<<< HEAD
+=======
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const [succeeded, setSucceeded] = useState(false);
+  const [processing, setProcessing] = useState('');
+  const [error, setError] = useState(null);
+  const [disabled, setDisabled] = useState(true);
+  const [clientSecret, setClientSecret] = useState(true);
+
+>>>>>>> fdaeb6a70553c7047cf196701e85b98d3f5af112
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
   cart.itemsPrice = round2(
     cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
   );
-  cart.shippingPrice = cart.itemsPrice > 100 ? round2(0) : round2(10);
-  cart.totalprice = cart.itemsPrice + cart.shippingPrice;
+
+  useEffect(() => {
+    const getClientSecret = async () => {
+      const response = await axios({
+        method: 'post',
+        url: `/payments/create?total=${cart.itemsPrice * 100}`,
+      });
+      setClientSecret(response.data.clientSecret);
+    };
+
+    getClientSecret();
+  }, [cart]);
 
   const handleSubmit = async (event) => {
-    // do all the fancy stripe stuff...
     event.preventDefault();
+    setProcessing(true);
+
+    const payload = await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      })
+      .then(async ({ paymentIntent }) => {
+        const { data } = await axios.post(
+          '/api/orders',
+          {
+            orderItems: cart.cartItems,
+            shippingAddress: cart.shippingAddress,
+            itemsPrice: cart.itemsPrice,
+          },
+          {
+            headers: {
+              authorization: `Bearer ${userInfo.token}`,
+            },
+          }
+        );
+
+        setSucceeded(true);
+        setError(null);
+        setProcessing(false);
+
+        ctxDispatch({
+          type: 'CART_CLEAR',
+        });
+        localStorage.removeItem('cartItems');
+        history('/order');
+      });
   };
 
-  const handleChange = (event) => {};
+  const handleChange = (event) => {
+    setDisabled(event.empty);
+    setError(event.error ? event.error.message : '');
+  };
 
   return (
     <div className="payment">
@@ -45,7 +103,6 @@ function PaymentScreen() {
           )
         </h1>
 
-        {/* Payment section - delivery address */}
         <div className="payment__section">
           <div className="payment__title">
             <h3>Delivery Address</h3>
@@ -60,7 +117,6 @@ function PaymentScreen() {
           </div>
         </div>
 
-        {/* Payment section - Review Items */}
         <div className="payment__section">
           <div className="payment__title">
             <h3>Review items and delivery</h3>
@@ -75,15 +131,11 @@ function PaymentScreen() {
           </div>
         </div>
 
-        {/* Payment section - Payment method */}
         <div className="payment__section">
           <div className="payment__title">
             <h3>Payment Method</h3>
           </div>
           <div className="payment__details">
-            {/* Stripe magic will go 
-            <CardElement onChange={handleChange} />*/}
-
             <form onSubmit={handleSubmit}>
               <CardElement onChange={handleChange} />
               <div className="payment__priceContainer">
@@ -95,8 +147,11 @@ function PaymentScreen() {
                   thousandSeparator={true}
                   prefix={'€'}
                 />
-                <Button variant="contained"> Buy now</Button>
+                <button disabled={processing || disabled || succeeded}>
+                  <span>{processing ? <p>Processing</p> : 'Buy Now'}</span>
+                </button>
               </div>
+              {error && <div>{error}</div>}
             </form>
           </div>
         </div>

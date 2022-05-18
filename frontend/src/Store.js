@@ -16,6 +16,7 @@ const initialState = {
       : [],
   },
 };
+
 function reducer(state, action) {
   switch (action.type) {
     case 'CART_ADD_ITEM':
@@ -39,6 +40,9 @@ function reducer(state, action) {
       return { ...state, cart: { ...state.cart, cartItems } };
     }
 
+    case 'CART_CLEAR':
+      return { ...state, cart: [] };
+
     case 'USER_SIGIN':
       return { ...state, userInfo: action.payload };
 
@@ -54,7 +58,7 @@ function reducer(state, action) {
         ...state,
         cart: {
           ...state.cart,
-          shippingInfo: action.payload,
+          shippingAddress: action.payload,
         },
       };
     default:

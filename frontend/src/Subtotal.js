@@ -32,12 +32,19 @@ function Subtotal() {
         thousandSeparator={true}
         prefix={'€'}
       />
-      <Button
-        variant="contained"
-        onClick={(e) => history('/signin?redirect=/shipping')}
-      >
-        Proceed to Checkout
-      </Button>
+
+      {cartItems.reduce((a, c) => a + c.price * c.quantity, 0) === 0 ? (
+        <Button variant="contained" disabled>
+          Empty Cart
+        </Button>
+      ) : (
+        <Button
+          variant="contained"
+          onClick={(e) => history('/signin?redirect=/shipping')}
+        >
+          Proceed to Checkout
+        </Button>
+      )}
     </div>
   );
 }

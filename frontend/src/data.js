@@ -1,7 +1,7 @@
 const data = {
   products: [
     {
-      _id: '1',
+      _id: '6285296e33a60daa6117ee9a',
       name: 'Camicia floreale',
       slug: 'camicia-floreale',
       category: 'Shirt',
@@ -12,7 +12,7 @@ const data = {
       countInStock: 0,
     },
     {
-      _id: '2',
+      _id: '6285296e33a60daa6117ee9b',
       name: 'Pantalone slim',
       slug: 'pantalone-slim',
       category: 'Pants',
@@ -23,7 +23,7 @@ const data = {
       countInStock: 200,
     },
     {
-      _id: '3',
+      _id: '6285296e33a60daa6117ee9c',
       name: 'T-shirt essential',
       slug: 't-shirt-essential',
       category: 'T-shirt',
@@ -34,7 +34,7 @@ const data = {
       countInStock: 400,
     },
     {
-      _id: '4',
+      _id: '6285296e33a60daa6117ee9d',
       name: 'Camicia',
       slug: 'camicia-semplice',
       category: 'Shirt',

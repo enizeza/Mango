@@ -33,6 +33,7 @@ function App() {
             <Route exact path="/signup" element={<SignupScreen />} />
             <Route exact path="/cart" element={<CartScreen />} />
             <Route exact path="/shipping" element={<ShippingAddressScreen />} />
+            <Route exact path="/order" />
             <Route
               exact
               path="/payment"
@@ -47,7 +48,9 @@ function App() {
           </Routes>
         </div>
       </main>
-      
+      <footer>
+        <div className="footer">All rights reserved</div>
+      </footer>
     </Router>
   );
 }

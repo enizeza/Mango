@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
-import { Store } from './Store';
+import { getCartTotal, Store } from './Store';
 import './PaymentScreen.css';
 import CartScreenProduct from './CartScreenProduct';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
@@ -17,8 +17,6 @@ function PaymentScreen() {
     cart: { cartItems },
   } = state;
 
-<<<<<<< HEAD
-=======
   const stripe = useStripe();
   const elements = useElements();
 
@@ -28,7 +26,6 @@ function PaymentScreen() {
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState(true);
 
->>>>>>> fdaeb6a70553c7047cf196701e85b98d3f5af112
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
   cart.itemsPrice = round2(
     cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
@@ -44,7 +41,7 @@ function PaymentScreen() {
     };
 
     getClientSecret();
-  }, [cart]);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -79,7 +76,7 @@ function PaymentScreen() {
           type: 'CART_CLEAR',
         });
         localStorage.removeItem('cartItems');
-        history('/order');
+        history(`/order/${data.order._id}`);
       });
   };
 
@@ -142,12 +139,16 @@ function PaymentScreen() {
                 <CurrencyFormat
                   renderText={(value) => <h3>Order Total: {value}</h3>}
                   decimalScale={2}
-                  value={cart.totalprice}
+                  value={cart.itemsPrice}
                   displayType={'text'}
                   thousandSeparator={true}
                   prefix={'€'}
                 />
-                <button disabled={processing || disabled || succeeded}>
+                <button
+                  disabled={
+                    processing || disabled || succeeded || cart.itemsPrice === 0
+                  }
+                >
                   <span>{processing ? <p>Processing</p> : 'Buy Now'}</span>
                 </button>
               </div>

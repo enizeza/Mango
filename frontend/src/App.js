@@ -12,6 +12,8 @@ import SignupScreen from './SignupScreen';
 import PaymentScreen from './PaymentScreen';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import OrderScreen from './OrderScreen';
+import ProfileScreen from './ProfileScreen';
 
 const promise = loadStripe(
   'pk_test_51KjpxXJ4m4B65folhh5aZ6JaNHAhzYPBLC9enUmlZeezXEmTJLkVsYMoOI0gLaElwkOoSvgNiqmLNEzcOAadhN4G00HUjNk8fB'
@@ -25,7 +27,7 @@ function App() {
         <Header />
       </header>
       <main>
-        <div class="content-wrap">
+        <div className="content-wrap">
           <Routes>
             <Route exact path="/product/:slug" element={<ProductScreen />} />
             <Route exact path="/" element={<Home />} />
@@ -33,7 +35,8 @@ function App() {
             <Route exact path="/signup" element={<SignupScreen />} />
             <Route exact path="/cart" element={<CartScreen />} />
             <Route exact path="/shipping" element={<ShippingAddressScreen />} />
-            <Route exact path="/order" />
+            <Route exact path="/orders" element={<OrderScreen />} />
+            <Route exact path="/profile" element={<ProfileScreen />} />
             <Route
               exact
               path="/payment"

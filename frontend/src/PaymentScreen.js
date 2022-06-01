@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
-import { getCartTotal, Store } from './Store';
+import { Store } from './Store';
 import './PaymentScreen.css';
 import CartScreenProduct from './CartScreenProduct';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
@@ -12,7 +12,7 @@ function PaymentScreen() {
   const history = useNavigate();
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const { cart, userInfo } = state;
+  const { cart, userInfo, shippingInfo } = state;
   const {
     cart: { cartItems },
   } = state;
@@ -76,7 +76,7 @@ function PaymentScreen() {
           type: 'CART_CLEAR',
         });
         localStorage.removeItem('cartItems');
-        history(`/order/${data.order._id}`);
+        history('/orders');
       });
   };
 

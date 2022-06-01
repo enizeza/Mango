@@ -47,9 +47,11 @@ function Header() {
             <div className="detail">
               Hello, {userInfo.name}
               <div className="sub">Profile</div>
-              <button onClick={signOut} className="sub">
-                Sign Out
-              </button>
+              <Link to={'/'}>
+                <button onClick={signOut} className="sub">
+                  Sign Out
+                </button>
+              </Link>
             </div>
           </div>
         </Link>

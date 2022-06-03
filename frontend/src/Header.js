@@ -56,30 +56,34 @@ function Header() {
         </div>
       </Link>
       <div className="item search right" tabIndex="0">
-        <div className="search-group">
-          <form onSubmit={submitHandler}>
-            <select
-              id="categorySearch"
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="all">All</option>
-              {categories.map((category) => (
-                <option value={category} key={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
-            <input
-              type="text"
-              name="q"
-              id="q"
-              onChange={(e) => setQuery(e.target.value)}
-            />
+        <form onSubmit={submitHandler}>
+          <div className="search-group">
+            <div className="categories">
+              <select
+                id="categorySearch"
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <option value="all">All</option>
+                {categories.map((category) => (
+                  <option value={category} key={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="t">
+              <input
+                type="text"
+                name="q"
+                id="q"
+                onChange={(e) => setQuery(e.target.value)}
+              />
+            </div>
             <Button className="material-icons search-icon" type="submit">
               <SearchIcon />
             </Button>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
       {userInfo ? (
         <Link to={'/profile'} className="item">

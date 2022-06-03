@@ -58,7 +58,7 @@ function PaymentScreen() {
           '/api/orders',
           {
             orderItems: cart.cartItems,
-            shippingAddress: cart.shippingAddress,
+            shippingAddress: cart.shippingInfo,
             itemsPrice: cart.itemsPrice,
           },
           {

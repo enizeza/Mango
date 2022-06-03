@@ -41,7 +41,6 @@ function reducer(state, action) {
     }
 
     case 'CART_CLEAR':
-      //return { ...state, cart: [] };
       return { ...state, cart: { ...state.cart, cartItems: [] } };
 
     case 'USER_SIGIN':
@@ -59,7 +58,7 @@ function reducer(state, action) {
         ...state,
         cart: {
           ...state.cart,
-          shippingAddress: action.payload,
+          shippingInfo: action.payload,
         },
       };
     default:

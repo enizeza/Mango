@@ -15,6 +15,7 @@ function Header() {
     dispatch({ type: 'USER_SIGNOUT' });
     localStorage.removeItem('userInfo');
     localStorage.removeItem('shippingInfo');
+    window.location.href = '/signin';
   };
   return (
     <nav className="navbar">
@@ -47,11 +48,9 @@ function Header() {
             <div className="detail">
               Hello, {userInfo.name}
               <div className="sub">Profile</div>
-              <Link to={'/'}>
-                <button onClick={signOut} className="sub">
-                  Sign Out
-                </button>
-              </Link>
+              <button onClick={signOut} className="sub">
+                Sign Out
+              </button>
             </div>
           </div>
         </Link>

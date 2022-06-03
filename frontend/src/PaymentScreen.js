@@ -4,9 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
 import { Store } from './Store';
 import './PaymentScreen.css';
-import CartScreenProduct from './CartScreenProduct';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
+import PaymentScreenProduct from './PaymentScreenProduct';
 
 function PaymentScreen() {
   const history = useNavigate();
@@ -121,7 +121,7 @@ function PaymentScreen() {
           <div className="payment__items">
             {cart.cartItems.map((product) => (
               <div key={product.slug}>
-                <CartScreenProduct product={product}></CartScreenProduct>
+                <PaymentScreenProduct product={product}></PaymentScreenProduct>
               </div>
             ))}
             <Link to="/cart">Edit</Link>

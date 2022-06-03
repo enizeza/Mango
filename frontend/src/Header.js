@@ -4,11 +4,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Store } from './Store';
 import axios from 'axios';
 import { getError } from './utils';
 import { toast } from 'react-toastify';
+import { Button } from '@mui/material';
 
 function Header() {
   const { state, dispatch } = useContext(Store);
@@ -35,6 +36,18 @@ function Header() {
     fetchCategories();
   }, []);
 
+  const navigate = useNavigate();
+  const [query, setQuery] = useState('');
+  const [category, setCategory] = useState('');
+  const submitHandler = (e) => {
+    e.preventDefault();
+    navigate(
+      query
+        ? `/search/?category=${category}&query=${query}`
+        : `/search?category=${category}`
+    );
+  };
+
   return (
     <nav className="navbar">
       <Link to="/">
@@ -44,22 +57,28 @@ function Header() {
       </Link>
       <div className="item search right" tabIndex="0">
         <div className="search-group">
-          <select>
-            {categories.map((category) => (
-              <option value={category}>
-                <Link to={`/search?category=${category}`}>{category}</Link>
-              </option>
-            ))}
-            {/*<option value="all">All</option>
-            <option value="all">Mens</option>
-            <option value="all">Womens</option>
-            <option value="all">Winter</option>
-            <option value="all">Summer</option>*/}
-          </select>
-          <input type="text" />
-          <i className="material-icons search-icon">
-            <SearchIcon />
-          </i>
+          <form onSubmit={submitHandler}>
+            <select
+              id="categorySearch"
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value="all">All</option>
+              {categories.map((category) => (
+                <option value={category} key={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+            <input
+              type="text"
+              name="q"
+              id="q"
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <Button className="material-icons search-icon" type="submit">
+              <SearchIcon />
+            </Button>
+          </form>
         </div>
       </div>
       {userInfo ? (

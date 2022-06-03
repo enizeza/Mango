@@ -1,8 +1,16 @@
 import express from 'express';
-
+import expressAsyncHandler from 'express-async-handler';
 import Product from './productModel.js';
 
 const productRouter = express.Router();
+
+productRouter.get(
+  '/categories',
+  expressAsyncHandler(async (req, res) => {
+    const categories = await Product.find().distinct('category');
+    res.send(categories);
+  })
+);
 
 productRouter.get('/', async (req, res) => {
   const products = await Product.find();
@@ -26,13 +34,5 @@ productRouter.get('/:id', async (req, res) => {
     res.status(404).send({ message: 'Product Not Found' });
   }
 });
-
-productRouter.get(
-  '/categories',
-  expressAsyncHandler(async (req, res) => {
-    const categories = await Product.find().distinct('category');
-    res.send(categories);
-  })
-);
 
 export default productRouter;

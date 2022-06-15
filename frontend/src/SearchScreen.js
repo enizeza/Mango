@@ -100,15 +100,15 @@ export default function SearchScreen() {
   };
 
   return (
-    <div className="checkout flex-direction">
-      <div className="checkout__left">
-        <div className="checkoutProduct">
+    <div className="products">
+      <div className="checkout_left">
+        <div>
           <Helmet>
             <title>Search Products</title>
           </Helmet>
-          <div className="checkoutProduct">
-            <div className="checkoutProduct__info">
-              <p className="checkoutProduct__title">Department</p>
+          <div>
+            <div>
+              <p>Department</p>
               <div>
                 <ul>
                   <li>
@@ -131,7 +131,7 @@ export default function SearchScreen() {
                   ))}
                 </ul>
               </div>
-              <p className="checkoutProduct__title">Price</p>
+              <p>Price</p>
               <div>
                 <ul>
                   <li>
@@ -158,8 +158,8 @@ export default function SearchScreen() {
           </div>
         </div>
       </div>
-      <div className="checkout__right">
-        <div className="subtotal">
+      <div>
+        <div>
           {loading ? (
             <div>loading</div>
           ) : error ? (

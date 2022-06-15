@@ -9,7 +9,7 @@ const data = {
       price: 120,
       rating: 4.5,
       description: 'high quality product',
-      countInStock: 0,
+      countInStock: 2,
     },
     {
       _id: '6285296e33a60daa6117ee9b',

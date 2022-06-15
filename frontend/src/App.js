@@ -14,6 +14,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import OrderScreen from './OrderScreen';
 import ProfileScreen from './ProfileScreen';
+import SearchScreen from './SearchScreen';
 
 const promise = loadStripe(
   'pk_test_51KjpxXJ4m4B65folhh5aZ6JaNHAhzYPBLC9enUmlZeezXEmTJLkVsYMoOI0gLaElwkOoSvgNiqmLNEzcOAadhN4G00HUjNk8fB'
@@ -37,6 +38,7 @@ function App() {
             <Route exact path="/shipping" element={<ShippingAddressScreen />} />
             <Route exact path="/orders" element={<OrderScreen />} />
             <Route exact path="/profile" element={<ProfileScreen />} />
+            <Route exact path="/search" element={<SearchScreen />} />
             <Route
               exact
               path="/payment"

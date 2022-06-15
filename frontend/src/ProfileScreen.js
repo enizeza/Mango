@@ -98,6 +98,11 @@ export default function ProfileScreen() {
             type="submit"
             className="login__signInButton"
             variant="contained"
+            disabled={
+              password !== confirmPassword ||
+              password === '' ||
+              confirmPassword === ''
+            }
           >
             Update
           </Button>

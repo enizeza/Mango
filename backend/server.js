@@ -6,6 +6,7 @@ import userRouter from './userRoutes.js';
 import orderRouter from './orderRoutes.js';
 import cors from 'cors';
 import Stripe from 'stripe';
+import path from 'path';
 import productRouter from './productRoutes.js';
 
 dotenv.config();
@@ -30,6 +31,12 @@ app.use('/api/seed', seedRouter);
 app.use('/api/products', productRouter);
 app.use('/api/users', userRouter);
 app.use('/api/orders', orderRouter);
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, '/frontend/build')));
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
+);
 
 app.post('/payments/create', async (request, response) => {
   const total = request.query.total;
